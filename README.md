@@ -39,7 +39,7 @@
 Add the dependency:
 
 ```bash
-npm i react-native-social-login-screen
+npm i react-native-social-login-module
 ```
 
 ## Peer Dependencies
@@ -124,7 +124,7 @@ import SocialLoginScreen from "react-native-social-login-screen";
 
 | Property             |   Type   |      Default       | Description                              |
 | -------------------- | :------: | :----------------: | ---------------------------------------- |
-| loginText            |  string  |   "Let's cook!"    | change the login button's text           |
+| loginText            |  string  |   "Login"    | change the login button's text           |
 | signUpText           |  string  |     "Sign Up"      | change the sign up button's text         |
 | loginTitleText       |  string  |      "Log In"      | change the login title's text            |
 | forgotPasswordText   |  string  | "Forgot Password?" | change the forgot password button's text |
@@ -136,6 +136,8 @@ import SocialLoginScreen from "react-native-social-login-screen";
 | onTwitterLoginPress  | function |     undefined      | handle Twitter login button is pressed   |
 | onGoogleLoginPress   | function |     undefined      | handle Google login button is pressed    |
 | onDiscordLoginPress  | function |     undefined      | handle Discord login button is pressed   |
+| requiredRestPassword  | boolean |     true      | handle display of forget password   |
+| requiredSignup  | boolean |     true      | handle display of Sigup  |
 
 ## Customization
 

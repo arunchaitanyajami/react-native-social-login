@@ -53,6 +53,8 @@ export interface ISocialLoginProps {
   onDiscordLoginPress?: () => void;
   onUserNameChangeText: (text: string) => void;
   onPasswordChangeText: (text: string) => void;
+	requiredSignup?: boolean
+	requiredRestPassword?: boolean
 }
 
 interface IState {}
@@ -105,6 +107,7 @@ export default class SocialLoginScreen extends React.PureComponent<
       passwordPlaceholder = "• • • • • • • •",
       onPasswordChangeText,
       passwordTextFieldStyle,
+	    requiredRestPassword = true
     } = this.props;
     return (
       <View style={styles.textFieldContainer}>
@@ -124,7 +127,7 @@ export default class SocialLoginScreen extends React.PureComponent<
             onChangeText={onPasswordChangeText}
           />
         </View>
-        {this.renderForgotPassword()}
+        { requiredRestPassword && this.renderForgotPassword()}
       </View>
     );
   };
@@ -149,7 +152,7 @@ export default class SocialLoginScreen extends React.PureComponent<
 
   renderClassicLoginButton = () => {
     const {
-      loginText = "Let's cook!",
+      loginText = "Login",
       loginButtonBackgroundColor,
       loginButtonShadowColor = "#58a13f",
       onLoginPress,
@@ -295,9 +298,11 @@ export default class SocialLoginScreen extends React.PureComponent<
   };
 
   render() {
+  	const { requiredSignup = true } = this.props;
+
     return (
       <SafeAreaView style={styles.container}>
-        {this.renderHeader()}
+        { requiredSignup && this.renderHeader()}
         {this.renderRightTopAsset()}
         <View style={styles.contentContainer}>
           {this.renderLoginTitle()}
