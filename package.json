@@ -2,7 +2,7 @@
   "name": "react-native-social-login-module",
   "version": "1.0.0",
   "description": "React Native social login",
-  "main": "index.js",
+  "main": "build/dist/SocialLoginScreen.js",
   "repository": "git@github.com:arunchaitanyajami/react-native-social-login.git",
   "keywords": [
     "social",
@@ -39,7 +39,7 @@
   "homepage": "https://github.com/arunchaitanyajami/react-native-social-login#readme",
   "scripts": {
     "build": "cd lib && tsc && cp ../package.json ../build/dist/ && Echo Build completed!",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "format": "prettier --write \"lib/**/*.ts\" \"lib/**/*.tsx\"",
     "lint": "tslint -p tsconfig.json",
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags"
@@ -71,5 +71,8 @@
       "npx prettier --write",
       "eslint src/*.js --fix-dry-run"
     ]
+  },
+  "dependencies": {
+    "react-native-androw": "^0.0.34"
   }
 }
