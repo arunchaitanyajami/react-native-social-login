@@ -1,6 +1,6 @@
 {
   "name": "react-native-social-login-module",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "React Native social login",
   "main": "build/dist/SocialLoginScreen.js",
   "repository": "git@github.com:arunchaitanyajami/react-native-social-login.git",
