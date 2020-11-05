@@ -53,8 +53,8 @@ export interface ISocialLoginProps {
   onDiscordLoginPress?: () => void;
   onUserNameChangeText: (text: string) => void;
   onPasswordChangeText: (text: string) => void;
-	requiredSignup?: boolean
-	requiredRestPassword?: boolean
+  requiredSignup?: boolean;
+  requiredRestPassword?: boolean;
 }
 
 interface IState {}
@@ -107,7 +107,7 @@ export default class SocialLoginScreen extends React.PureComponent<
       passwordPlaceholder = "• • • • • • • •",
       onPasswordChangeText,
       passwordTextFieldStyle,
-	    requiredRestPassword = true
+      requiredRestPassword = true,
     } = this.props;
     return (
       <View style={styles.textFieldContainer}>
@@ -127,7 +127,7 @@ export default class SocialLoginScreen extends React.PureComponent<
             onChangeText={onPasswordChangeText}
           />
         </View>
-        { requiredRestPassword && this.renderForgotPassword()}
+        {requiredRestPassword && this.renderForgotPassword()}
       </View>
     );
   };
@@ -298,11 +298,11 @@ export default class SocialLoginScreen extends React.PureComponent<
   };
 
   render() {
-  	const { requiredSignup = true } = this.props;
+    const { requiredSignup = true } = this.props;
 
     return (
       <SafeAreaView style={styles.container}>
-        { requiredSignup && this.renderHeader()}
+        {requiredSignup && this.renderHeader()}
         {this.renderRightTopAsset()}
         <View style={styles.contentContainer}>
           {this.renderLoginTitle()}
