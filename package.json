@@ -1,6 +1,6 @@
 {
   "name": "react-native-social-login-module",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "React Native social login",
   "main": "build/dist/SocialLoginScreen.js",
   "repository": "git@github.com:arunchaitanyajami/react-native-social-login.git",
@@ -38,10 +38,10 @@
   },
   "homepage": "https://github.com/arunchaitanyajami/react-native-social-login#readme",
   "scripts": {
-    "build": "cd lib && tsc && cp ../package.json ../build/dist/ && Echo Build completed!",
+    "build": "cd lib && tsc && cp ../package.json ../build/dist/ && cp lib/local-assets ../build/dist/ && Echo Build completed!",
     "format": "prettier --write \"lib/**/*.ts\" \"lib/**/*.tsx\"",
     "lint": "tslint -p tsconfig.json",
-    "version": "npm run format && git add -A src",
+    "version": "npm run format && git add -A .",
     "postversion": "git push && git push --tags"
   },
   "peerDependencies": {
