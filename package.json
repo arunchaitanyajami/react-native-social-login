@@ -38,7 +38,7 @@
   },
   "homepage": "https://github.com/arunchaitanyajami/react-native-social-login#readme",
   "scripts": {
-    "build": "cd lib && tsc && cp ../package.json ../build/dist/ && cp ./local-assets ../build/dist/ && Echo Build completed!",
+    "build": "cd lib && tsc && cp ../package.json ../build/dist/ && pwd && cp -R local-assets ../build/dist/ && Echo Build completed!",
     "format": "prettier --write \"lib/**/*.ts\" \"lib/**/*.tsx\"",
     "lint": "tslint -p tsconfig.json",
     "version": "npm run format && git add -A .",
