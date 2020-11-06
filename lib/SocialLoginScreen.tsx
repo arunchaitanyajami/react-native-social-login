@@ -44,7 +44,7 @@ export interface ISocialLoginProps {
   passwordTextFieldStyle?: any;
   rightTopAssetImageSource?: any;
   leftBottomAssetImageSource?: any;
-  onLoginPress: () => void;
+  onLoginPress: (username: string, password: string) => void;
   onSignUpPress: () => void;
   onForgotPasswordPress: () => void;
   onFacebookLoginPress?: () => void;
@@ -57,7 +57,10 @@ export interface ISocialLoginProps {
   requiredRestPassword?: boolean;
 }
 
-interface IState {}
+interface IState {
+	username?:any
+	password?:any
+}
 
 export default class SocialLoginScreen extends React.PureComponent<
   ISocialLoginProps,
@@ -88,6 +91,23 @@ export default class SocialLoginScreen extends React.PureComponent<
     );
   };
 
+	captureData = (data, key) => {
+		const {
+			onPasswordChangeText,
+			onUserNameChangeText,
+		} = this.props;
+
+		if ('username' === key) {
+			this.setState({username: data});
+			onUserNameChangeText( data )
+		}
+
+		if ('password' === key) {
+			this.setState({password: data});
+			onPasswordChangeText( data )
+		}
+	};
+
   renderLoginTitle = () => {
     const { loginTitleText = "Log In", loginTextStyle } = this.props;
     return (
@@ -102,10 +122,8 @@ export default class SocialLoginScreen extends React.PureComponent<
   renderTextFieldContainer = () => {
     const {
       usernameTextFieldStyle,
-      usernamePlaceholder = "john_doe@example.com",
-      onUserNameChangeText,
-      passwordPlaceholder = "• • • • • • • •",
-      onPasswordChangeText,
+      usernamePlaceholder = "Email",
+      passwordPlaceholder = "Password",
       passwordTextFieldStyle,
       requiredRestPassword = true,
     } = this.props;
@@ -114,8 +132,8 @@ export default class SocialLoginScreen extends React.PureComponent<
         <TextField
           {...this.props}
           placeholder={usernamePlaceholder}
+          onChangeText={(username) => this.captureData( username, 'username')}
           textFieldStyle={usernameTextFieldStyle}
-          onChangeText={onUserNameChangeText}
         />
         <View style={styles.passwordTextFieldContainer}>
           <TextField
@@ -123,8 +141,8 @@ export default class SocialLoginScreen extends React.PureComponent<
             secureTextEntry
             {...this.props}
             placeholder={passwordPlaceholder}
+            onChangeText={(password) => this.captureData( password, 'password')}
             textFieldStyle={passwordTextFieldStyle}
-            onChangeText={onPasswordChangeText}
           />
         </View>
         {requiredRestPassword && this.renderForgotPassword()}
@@ -157,11 +175,13 @@ export default class SocialLoginScreen extends React.PureComponent<
       loginButtonShadowColor = "#58a13f",
       onLoginPress,
     } = this.props;
+
+	  const {username, password} = this.state;
     return (
       <SocialButton
         {...this.props}
         text={loginText}
-        onPress={onLoginPress}
+        onPress={ () => onLoginPress(username,password) }
         shadowColor={loginButtonShadowColor}
         backgroundColor={loginButtonBackgroundColor}
       />
@@ -313,4 +333,5 @@ export default class SocialLoginScreen extends React.PureComponent<
       </SafeAreaView>
     );
   }
-}
+
+};
