@@ -44,7 +44,7 @@ export interface ISocialLoginProps {
   passwordTextFieldStyle?: any;
   rightTopAssetImageSource?: any;
   leftBottomAssetImageSource?: any;
-  onLoginPress: (username: string, password: string) => void;
+  onLoginPress: (username: string | undefined, password: string | undefined) => void;
   onSignUpPress: () => void;
   onForgotPasswordPress: () => void;
   onFacebookLoginPress?: () => void;
@@ -58,14 +58,20 @@ export interface ISocialLoginProps {
 }
 
 interface IState {
-	username?:any
-	password?:any
+	username?:string;
+	password?:string;
 }
 
 export default class SocialLoginScreen extends React.PureComponent<
   ISocialLoginProps,
   IState
 > {
+
+	state ={
+		username: '',
+		password: ''
+	};
+
   renderHeader = () => {
     const {
       signUpText = "SIGN UP",
@@ -97,14 +103,19 @@ export default class SocialLoginScreen extends React.PureComponent<
 			onUserNameChangeText,
 		} = this.props;
 
+		const {username, password} = this.state;
+
+		console.log(username);
+		console.log(password);
+
 		if ('username' === key) {
-			this.setState({username: data});
+			this.setState({ username: data});
 			onUserNameChangeText( data )
 		}
 
 		if ('password' === key) {
 			this.setState({password: data});
-			onPasswordChangeText( data )
+			onPasswordChangeText(data)
 		}
 	};
 
@@ -168,20 +179,26 @@ export default class SocialLoginScreen extends React.PureComponent<
     );
   };
 
+	loginClick = () => {
+		const {
+			onLoginPress,
+		} = this.props;
+		const {username, password} = this.state;
+		onLoginPress(username, password );
+	};
+
   renderClassicLoginButton = () => {
     const {
       loginText = "Login",
       loginButtonBackgroundColor,
       loginButtonShadowColor = "#58a13f",
-      onLoginPress,
     } = this.props;
 
-	  const {username, password} = this.state;
     return (
       <SocialButton
         {...this.props}
         text={loginText}
-        onPress={ () => onLoginPress(username,password) }
+        onPress={ () => this.loginClick() }
         shadowColor={loginButtonShadowColor}
         backgroundColor={loginButtonBackgroundColor}
       />
